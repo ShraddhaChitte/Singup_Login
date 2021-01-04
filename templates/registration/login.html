@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Log In{% endblock %}
+
+{% block content %}
+
+<a  href="#" data-target="#login" data-toggle="modal" style="text-decoration: none; color: black; margin-left: 46%;" class="btn login" type="submit" value="LOGIN">LOGIN</a>
+
+<div id="login" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width: 435px;
+    margin-top: 190px;">
+    
+    <div class="modal-content">
+      <div class="modal-body">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <h4 style="text-align: center;">LOGIN</h4>
+        <form method="post">
+          {% csrf_token %}
+          <!-- {{ form.as_p }} -->
+          <input type="text" name="username" class="username form-control" placeholder="USERNAME"/>
+          <input type="password" name="password" class="password form-control" placeholder="PASSWORD"/>
+          <input class="btn login" type="submit" value="LOGIN" style="margin-left: 38%" />
+        </form>
+      </div>
+    </div>
+  </div>  
+</div>
+{% endblock %}

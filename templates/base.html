@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-blue-grey.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Open+Sans'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+  <style type="bootstrapcdn.css"></style>
+<script src="bootstrapcdn.js"></script>
+<script src="cloudflare.js"></script>
+  <style>
+    .login-trigger {
+  font-weight: bold;
+  color: #fff;
+  background: linear-gradient(to bottom right, black, grey);
+  padding: 15px 30px;
+  border-radius: 30px;
+  position: relative; 
+  top: 50%;
+}
+
+/*Modal*/
+h4 {
+  font-weight: bold;
+  color: #fff;
+}
+.close {
+  color: #fff;
+  transform: scale(1.2)
+}
+.modal-content {
+  font-weight: bold;
+  background: linear-gradient(to bottom right,black, grey);
+}
+.form-control {
+  margin: 1em 0;
+}
+.form-control:hover, .form-control:focus {
+  box-shadow: none;  
+  border-color: #fff;
+}
+.username, .password {
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 2px solid #eee;
+  padding-left: 0;
+  font-weight: normal;
+  background: transparent;  
+}
+.form-control::-webkit-input-placeholder {
+  color: #eee;  
+}
+.form-control:focus::-webkit-input-placeholder {
+  font-weight: bold;
+  color: #fff;
+}
+.login {
+  padding: 6px 20px;
+  border-radius: 20px;
+  background: none;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  transition: all .5s;
+  margin-top: 1em;
+}
+.login:hover {
+  background: lightgrey;
+  color: #fff;
+}
+  body {
+    font: 400 15px Lato, sans-serif;
+    line-height: 1.8;
+    color: black;
+    background-repeat: no-repeat;
+    background-color: #ffff;
+/*background-image: url(fake_fact.jpg);*/
+ background-size: 100% 100%;
+
+  }
+  h2 {
+    font-size: 24px;
+    text-transform: uppercase;
+    color: #303030;
+    font-weight: 600;
+    margin-bottom: 30px;
+  }
+  h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    color: #303030;
+    font-weight: 400;
+    margin-bottom: 30px;
+  }  
+  
+  .container-fluid {
+    padding: 60px 50px;
+  }
+  .container{
+    margin-right: 0px;
+
+  }
+  .bg-grey {
+    background-color: #f6f6f6;
+  }
+  .logo-small {
+    color: #f4511e;
+    font-size: 50px;
+  }
+  .logo {
+    color: #f4511e;
+    font-size: 200px;
+  }
+  .thumbnail {
+    padding: 0 0 15px 0;
+    border: none;
+    border-radius: 0;
+  }
+  .thumbnail img {
+    width: 100%;
+    height: 100%;
+    margin-bottom: 10px;
+  }
+  .carousel-control.right, .carousel-control.left {
+    background-image: none;
+    color: #f4511e;
+  }
+  .carousel-indicators li {
+    border-color: #f4511e;
+  }
+  .carousel-indicators li.active {
+    background-color: #f4511e;
+  }
+  .item h4 {
+    font-size: 19px;
+    line-height: 1.375em;
+    font-weight: 400;
+    font-style: italic;
+    margin: 70px 0;
+  }
+  .item span {
+    font-style: normal;
+  }
+  .panel {
+    border: 1px solid #f4511e; 
+    border-radius:0 !important;
+    transition: box-shadow 0.5s;
+  }
+  .panel:hover {
+    box-shadow: 5px 0px 40px rgba(0,0,0, .2);
+  }
+  .panel-footer .btn:hover {
+    border: 1px solid #f4511e;
+    background-color: #fff !important;
+    color: #f4511e;
+  }
+  .panel-heading {
+    color: #fff !important;
+    background-color: #f4511e !important;
+    padding: 25px;
+    border-bottom: 1px solid transparent;
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+  }
+  .panel-footer {
+    background-color: white !important;
+  }
+  .panel-footer h3 {
+    font-size: 32px;
+  }
+  .panel-footer h4 {
+    color: #aaa;
+    font-size: 14px;
+  }
+  .panel-footer .btn {
+    margin: 15px 0;
+    background-color: #f4511e;
+    color: #fff;
+  }
+  .navbar {
+    margin-bottom: 0;
+    /*background-color: #f4511e;*/
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    font-family: Montserrat, sans-serif;
+    background: transparent;
+background-image: url('kr1.jpg');
+
+  }
+  .navbar li a, .navbar .navbar-brand {
+    background-color: transparent !important;
+    font-weight: bolder;
+    color: #fff;
+  }
+  .navbar-nav li a:hover, .navbar-nav li.active a {
+    color: grey !important;
+    background-color: transparent !important;
+  }
+  .navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+
+  }
+  .navbar-default .navbar-nav>li>a {
+    color: #fff;
+}
+.jumbotron >p, h5
+{
+  text-align: left;
+    padding-right: 900px;
+}
+.w3-row-padding img {margin-bottom: 12px;
+}
+.w3-bar-item{
+  text-decoration: none;
+}
+#about img
+{
+  height: 400px;
+  width: 400px;
+}
+  #about
+  {
+    padding-top: 250px;
+    padding-bottom: 200px;
+      background: linear-gradient(rgba(255,255,255,0.5),rgba(0,0,0,0.7)),url('ny.jpg');
+
+    background-size: cover;
+  }
+
+  #about h2,h4,p
+  {
+    color: #fff;
+  }
+
+  footer .glyphicon {
+    font-size: 20px;
+    margin-bottom: 20px;
+    color: #f4511e;
+  }
+  .slideanim {visibility:hidden;}
+  .slide {
+    animation-name: slide;
+    -webkit-animation-name: slide;
+    animation-duration: 1s;
+    -webkit-animation-duration: 1s;
+    visibility: visible;
+  }
+  @keyframes slide {
+    0% {
+      opacity: 0;
+      transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  @-webkit-keyframes slide {
+    0% {
+      opacity: 0;
+      -webkit-transform: translateY(70%);
+    } 
+    100% {
+      opacity: 1;
+      -webkit-transform: translateY(0%);
+    }
+  }
+  @media screen and (max-width: 768px) {
+    .col-sm-4 {
+      text-align: center;
+      margin: 25px 0;
+    }
+    .btn-lg {
+      width: 100%;
+      margin-bottom: 35px;
+    }
+  }
+  @media screen and (max-width: 480px) {
+    .logo {
+      font-size: 150px;
+    }
+  }
+
+
+
+/*
+  body {
+  background-color:#1d1d1d !important;
+  font-family: "Asap", sans-serif;
+  color:#989898;
+  margin:10px;
+  font-size:16px;
+}*/
+
+#demo {
+  height:100%;
+  position:relative;
+  overflow:hidden;
+}
+
+
+.green{
+  background-color:#6fb936;
+}
+        .thumb{
+            margin-bottom: 30px;
+        }
+        
+        .page-top{
+            margin-top:85px;
+        }
+
+   
+img.zoom {
+    width: 100%;
+    height: 200px;
+    border-radius:5px;
+    object-fit:cover;
+    -webkit-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -ms-transition: all .3s ease-in-out;
+}
+        
+ 
+.transition {
+    -webkit-transform: scale(1.2); 
+    -moz-transform: scale(1.2);
+    -o-transform: scale(1.2);
+    transform: scale(1.2);
+}
+    .modal-header {
+   
+     border-bottom: none;
+}
+    .modal-title {
+        color:#000;
+    }
+    .modal-footer{
+      display:none;  
+    }
+
+    .col-sm-4 img
+    {
+      width: 250px;
+      height: 250px;
+    }
+
+  </style>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="60" >
+
+
+  <!-- <div class="jumbotron text-center"> -->
+  
+  <nav class="navbar navbar-default navbar-trans navbar-fixed-top" style="background-color: black">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>                        
+        </button>
+        <!-- <a class="navbar-brand" href="#myPage">Keanu Reeves</a> -->
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a href="/">HOME</a></li>
+          <li><a href="#about_us">ABOUT US</a></li>
+          <li><a class="" href="{% url 'signup' %}" >SIGN UP</a></li>
+          <li style="color: white;">
+          {% if user.is_authenticated %}
+  <a>Hi {{ user.username }}!</a></li>
+  <li><a href="{% url 'logout' %}">Log Out</a></li>
+  <!-- <li><a href="{% url 'password_reset' %}">Reset Password</a></li> -->
+{% else %}
+
+<!-- <li> <a href="{% url 'login' %}" >LOGIN</a> -->
+<li> <a href="{% url 'login' %}" >LOGIN</a>
+
+{% endif %}
+        </li>
+        </ul>
+      </div>
+    </div>
+  
+  </nav>
+  
+   
+  
+  
+  <script>
+  
+  $(document).ready(function(){
+    $(".fancybox").fancybox({
+          openEffect: "none",
+          closeEffect: "none"
+      });
+      
+      $(".zoom").hover(function(){
+      
+      $(this).addClass('transition');
+    }, function(){
+          
+      $(this).removeClass('transition');
+    });
+  });
+      </script>
+  
+  
+  
+  <script>
+  $(document).ready(function(){
+    // Add smooth scrolling to all links in navbar + footer link
+    $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+      // Make sure this.hash has a value before overriding default behavior
+      if (this.hash !== "") {
+        // Prevent default anchor click behavior
+        event.preventDefault();
+  
+        // Store hash
+        var hash = this.hash;
+  
+        // Using jQuery's animate() method to add smooth page scroll
+        // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 900, function(){
+     
+          // Add hash (#) to URL when done scrolling (default click behavior)
+          window.location.hash = hash;
+        });
+      } // End if
+    });
+    
+    $(window).scroll(function() {
+      $(".slideanim").each(function(){
+        var pos = $(this).offset().top;
+  
+        var winTop = $(window).scrollTop();
+          if (pos < winTop + 600) {
+            $(this).addClass("slide");
+          }
+      });
+    });
+  })
+  </script>
+  <img src="../static/img/fake_fact.jpg" alt="fake_fact" width="500" height="280" style="margin-right: 50px;width: 100%; margin-top: 50px;height: auto;">
+  <main>
+    {% block content %}
+    {% endblock %}
+  </main>
+  <div class="w3-padding-32" style="margin-top: 15px;">
+      <div class="w3-bar w3-border" style="width: fit-content;margin-left: 38%; ">
+        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">URL</a>
+        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">HEADLINE</a>
+        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">CONTENT</a>
+        <a href="#" class="w3-bar-item w3-button" style="text-decoration: none;">LINK</a>
+      </div>
+    </div>
+  <!--   <div class="btn-group" role="group" aria-label="Basic example">
+    <button type="button" class="btn ">URL</button>
+    <button type="button" class="btn ">HEADLINE</button>
+    <button type="button" class="btn ">CONTENT</button>
+    <button type="button" class="btn ">LINK</button>
+  
+  </div> -->
+  
+  <!-- <div id="login" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 435px;
+      margin-top: 190px;">
+      
+      <div class="modal-content">
+        <div class="modal-body">
+          <button data-dismiss="modal" class="close">&times;</button>
+          <h4 style="text-align: center;">LOGIN</h4>
+          <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="text" name="username" class="username form-control" placeholder="USERNAME"/>
+            <input type="password" name="password" class="password form-control" placeholder="PASSWORD"/>
+            <input class="btn login" type="submit" value="LOGIN" style="margin-left: 38%" />
+          </form>
+        </div>
+      </div>
+    </div>  
+  </div> -->
+  <!-- <div id="signup" class="modal fade" role="dialog">
+    <div class="modal-dialog" style="width: 435px;
+      margin-top: 190px;">
+      
+      <div class="modal-content">
+        <div class="modal-body">
+          <button data-dismiss="modal" class="close">&times;</button>
+          <h4 style="text-align: center;">SIGN UP</h4>
+          <form>
+            <input type="text" name="name" class="username form-control" placeholder="NAME"/>
+            <input type="text" name="country" class="username form-control" placeholder="COUNTRY"/>
+            <input type="text" name="profession" class="username form-control" placeholder="PROFESSION"/>
+            <input type="text" name="username" class="username form-control" placeholder="USERNAME"/>
+            <input type="password" name="password" class="password form-control" placeholder="PASSWORD"/>
+            <input class="btn login" type="submit" value="SIGN UP" style="margin-left: 38%" />
+          </form>
+        </div>
+      </div>
+    </div>  
+  </div>
+   -->
+
+</body>
+</html>

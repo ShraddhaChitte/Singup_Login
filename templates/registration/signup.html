@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block title %}Sign Up{% endblock %}
+
+{% block content %}
+  <!-- <h2>Sign up</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign Up</button>
+  </form> -->
+<!-- 
+  
+  <form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="sdpgWjg7uxNw5hOPfA4uEhF5u0dybvUpqE42TPcFp9T94dR1p2RHYH4KHoPIC3L7">
+    <p><label for="id_username">Username:</label> <input type="text" name="username" value="" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="username form-control"> </p>
+<p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="password form-control"> </p>
+<p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="password form-control"> </p>
+    <button type="submit">Sign Up</button>
+  </form>
+ -->
+
+  <a  href="#" data-target="#signup" data-toggle="modal" style="text-decoration: none; color: black; margin-left: 46%;" class="btn login" type="submit" value="SIGN UP">SIGN UP</a>
+
+<div id="signup" class="modal fade" role="dialog">
+  <div class="modal-dialog" style="width: 435px;
+    margin-top: 190px;">  
+    <div class="modal-content">
+      <div class="modal-body">
+        <button data-dismiss="modal" class="close">&times;</button>
+        <h4 style="text-align: center;">SIGN UP </h4>
+       <form method="post">
+    <input type="hidden" name="csrfmiddlewaretoken" value="SeHOhcpHrXlq8goSnJAAnbvEyrgJu5qf0pogaSilsHkqZ9uJWSoLzM00IfICww8S">
+    <p><label for="id_username">Username:</label> <input type="text" name="username" value="" maxlength="150" autocapitalize="none" autocomplete="username" autofocus="" required="" id="id_username" class="username form-control"> </p>
+<p><label for="id_password1">Password:</label> <input type="password" name="password1" autocomplete="new-password" required="" id="id_password1" class="password form-control"> </p>
+<p><label for="id_password2">Password confirmation:</label> <input type="password" name="password2" autocomplete="new-password" required="" id="id_password2" class="password form-control"> </p>
+    <input class="btn login" type="submit" value="SIGN UP" style="margin-left: 38%" />
+  </form>
+      </div>
+    </div>
+  </div>  
+</div>
+{% endblock %}
